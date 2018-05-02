@@ -39,11 +39,11 @@ As an exmaple, to calculate the incompatibility of each aspect of the IMDb datas
 	$ python src/calc_base_aspect_inconsistency.py --input data/imdb/imdb.hin --output data/imdb/imdb_base_aspect_inc.csv 
 	$ python src/agg_aspect_inconsistency.py $data/imdb/imdb_base_aspect_inc.csv 
 
-To execute the ad-hoc implementation of the embedding algorithm, one should makefile in the corresponding source code directory in ``src/``, and then execute the binary code in its ``bin/``.
+To execute the ad-hoc implementation of the embedding algorithm, one should makefile in the corresponding source code directory in ``src/``, and then execute the binary code in its ``bin/``. The argument ``-types`` specifies the attribute node types involved in the current aspect with the following mapping: in IMDb -- u for user, a for actor, d for director, g for genre; in DBLP -- a for author, p for reference, v for venue, w for term, y for year.
 
 As an example, to embed the IMDb network with only attribute node types ``user`` and ``director``, execute the following commands sequentially:
 
-	$ cd src/emb_imdb/; make; cd ../..``
+	$ cd src/emb_imdb/; make; cd ../..
 	$ ./src/emb_imdb/bin/emb_imdb  -types ud -hin data/imdb/imdb.hin -center data/imdb/movie.node -attribute data/imdb/uadg.node -output data/imdb/attribute.emb -output-center data/imdb/center.em``
 
 ### Class Labels for DBLP Classification
