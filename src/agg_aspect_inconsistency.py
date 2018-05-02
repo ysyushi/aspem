@@ -31,7 +31,7 @@ with open(input_file, "r") as f_in:
         atom_score_dict[(edge_type_i, edge_type_j)] = gamma
 
 aspect_score_dict = {}
-for cand_aspect in find_powerset(edge_type_set):
+for cand_aspect in find_powerset(edge_type_set):  # currently implemented with brutal force
     if len(cand_aspect) < 2:
         continue
     if not is_connected(cand_aspect):
@@ -41,7 +41,8 @@ for cand_aspect in find_powerset(edge_type_set):
         edge_type_pair = (aug_edge_type_pair[0][2], aug_edge_type_pair[1][2])
         if edge_type_pair not in atom_score_dict:
             edge_type_pair = (edge_type_pair[1], edge_type_pair[0])
-        assert edge_type_pair in atom_score_dict
+        if edge_type_pair not in atom_score_dict:
+            continue
         cur_aspect_score += atom_score_dict[edge_type_pair]
 
     aspect_score_dict[tuple(cand_aspect)] = cur_aspect_score
